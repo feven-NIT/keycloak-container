@@ -5,6 +5,12 @@ FROM quay.io/keycloak/keycloak:latest as builder
 ENV KC_HEALTH_ENABLED=true
 ENV KC_METRICS_ENABLED=true
 
+
+RUN mkdir -p /opt/keycloak/themes/neutron-it
+
+# Copy the "neutron-it" theme to the themes directory
+COPY ./custom-theme/theme/neutron-it/. /opt/keycloak/themes/neutron-it
+
 # Configure a database vendor
 ENV KC_DB=postgres
 
